@@ -11,7 +11,7 @@ use Illuminate\Http\RedirectResponse;
 class logoutController extends Controller
 {
 
-    protected function logout()
+    protected function logout(): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $userid = \auth()->user()->email;
         User::where('email' , $userid)->update([

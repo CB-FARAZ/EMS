@@ -9,12 +9,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body class="h-full" >
+<body style="background:#111827;" >
 
 <!-- This is an example component -->
 
 <div>
-    <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
+    <nav class=" border-b border-gray-200 fixed w-full" style="background-color: #111827">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center justify-start">
@@ -75,13 +75,13 @@
         </div>
 
     </nav>
-    <div class="flex overflow-hidden bg-white pt-16">
+    <div class="flex overflow-hidden  pt-16" style="background-color:#111827;" >
         <aside id="sidebar"
                class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
                aria-label="Sidebar" >
-            <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
+            <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200  pt-0 h-full"  style="background-color:#111827;">
                 <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-                    <div class="flex-1 px-3 bg-white divide-y space-y-1">
+                    <div class="flex-1 px-3  divide-y space-y-1 " style="background:#111827;">
                         <ul class="space-y-2 pb-2">
                             <li>
                                 <form action="#" method="GET" class="lg:hidden">

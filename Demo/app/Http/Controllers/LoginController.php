@@ -25,9 +25,6 @@ class LoginController extends Controller
 
 
 
-
-
-
     /**
      * Authenticate user
      *

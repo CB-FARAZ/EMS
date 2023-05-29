@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
-//use http\Env\Request;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+
+//use http\Env\Request;
 
 class logoutController extends Controller
 {
@@ -30,7 +31,7 @@ class logoutController extends Controller
 
         auth()->logout();
 
-        return redirect('/');
+        return redirect('/admin/login');
 
     }
 

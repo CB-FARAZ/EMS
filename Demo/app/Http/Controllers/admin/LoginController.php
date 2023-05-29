@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
-
-use Illuminate\Auth\Events\Login;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,8 +36,6 @@ class LoginController extends Controller
     {
 
         $attributes = $request->validate([
-
-            'name' => 'required|max:50',
 
             'email' => 'required|max:50',
 
@@ -77,15 +74,9 @@ class LoginController extends Controller
 
         auth()->login($user );
 
-        return redirect('main');
+        return redirect('admin/main');
 
     }
-
-
-
-
-
-
 
 
 

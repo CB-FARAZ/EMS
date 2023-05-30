@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendence;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
@@ -18,7 +19,7 @@ class LoginController extends Controller
     {
         // load the login blade
 
-        return view('login');
+        return view('admin/login');
 
     }
 
@@ -39,7 +40,7 @@ class LoginController extends Controller
 
             'email' => 'required|max:50',
 
-            'password' => 'required|max:10',
+            'password' => 'required|max:255',
 
         ]);
 
@@ -66,11 +67,6 @@ class LoginController extends Controller
 
         ]);
 
-        User::where('email' , $request->email)->update([
-
-           'type' => 'Admin'
-
-        ]);
 
         auth()->login($user );
 

@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\logoutController;
-use App\Http\Controllers\admin\RegisterController;
-use App\Http\Controllers\AdminController;
+//use App\Http\Controllers\admin\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +19,20 @@ use Illuminate\Support\Facades\Route;
 // Welcome  Route
 
 Route::get('/', function () {
-    return view('welcome');
+
+    return view('admin/login');
+
 });
 
 
 Route::group(['prefix' => 'admin'], function () {
 
-// Login route
+
+    // index
+
+
+
+    // login
 
     Route::get('login', [LoginController::class, 'index'])->name('login');
 
@@ -36,15 +42,15 @@ Route::group(['prefix' => 'admin'], function () {
 
 //Register User
 
-    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+//    Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 //Register authentication User
 
-    Route::post('/register/process', [RegisterController::class, 'register'])->name('register.process');
+//    Route::post('/register/process', [RegisterController::class, 'register'])->name('register.process');
 
 //Dashboard Route
 
-    Route::get('main', fn() => view('dash'))->name('main');
+    Route::get('main', fn() => view('admin/dash'))->name('main');
 
 //logout
 
@@ -57,17 +63,35 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('create', [\App\Http\Controllers\admin\CreateController::class, 'index'])->name('create');
 
-  // Edit Users
+    // Edit Users
 
-    Route::get('edits' , fn()=>view('edit'))->name('edits');
+//    Route::get('edits', fn() => view('admin/edit'))->name('edits');
 
+    // Delete User
+
+
+     Route::delete('delete', [\App\Http\Controllers\admin\UserController::class, 'destroy'])->name('del');
+
+
+
+    Route::get('edits' , [\App\Http\Controllers\admin\EditController::class , 'index'])->name('edits');
+
+
+    Route::put('edits' , [\App\Http\Controllers\admin\EditController::class , 'update'])->name('edits.process');
+
+
+
+
+
+
+    // Authentication process
 
     Route::post('create/user', [\App\Http\Controllers\admin\CreateController::class, 'Request'])->name('create.process');
 
 
 // Users Setting
 
-    Route::get('/settings', fn() => view('setting'))->name('settings');
+    Route::get('/settings', fn() => view('admin/setting'))->name('settings');
 
 
 // All users
@@ -76,7 +100,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 // Reports
 
-    Route::get('Rep' , fn() => view('Report'))->name('Rep');
+    Route::get('Rep', fn() => view('admin/Report'))->name('Rep');
 
 
 });

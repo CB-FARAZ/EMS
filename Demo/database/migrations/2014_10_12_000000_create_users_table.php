@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('designation')->default('null');
             $table->string('type')->default('null');
             $table->string('password');
             $table->timestamp('last_login_at')->nullable();

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\admin;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
 
 class CreateController extends Controller
 {
@@ -17,7 +21,7 @@ class CreateController extends Controller
     {
         // load the login blade
 
-        return view('create');
+        return view('admin/create');
 
     }
 
@@ -37,17 +41,25 @@ class CreateController extends Controller
 
             'name' => 'required|max:20',
             'email' => 'required|max:50',
+            'designation' => 'required',
+            'type' => 'required',
             'password' => 'required|min:8',
+            'password_confirmation' => 'required_with:password|same:password|min:8'
+
         ]);
 
         $user = User::create([
             'name' => $attributes['name'],
             'email' => $attributes['email'],
+            'designation' => $attributes['designation'],
+            'type' => $attributes['type'],
             'password' => Hash::make($attributes['password']),
+            'password_confirmation' => Hash::make($attributes['password_confirmation']),
 
         ]);
 
-        User::where('email' , $request->email)->update([
+
+        User::where('email', $request->email)->update([
             'status' => 'Inactive'
 
         ]);
@@ -58,25 +70,27 @@ class CreateController extends Controller
 
         ]);
 
-        User::where('email' , $request->email)->update([
+        User::where('email', $request->email)->update([
 
-            'type' => 'User'
+            'type' => $request->type
 
         ]);
 
+
+        $designation = $request->input('designation');
+        $user->designation = $designation;
+        $user->save();
+
+
         auth()->login($user);
 
-        return redirect('/user/users');
+        Session::flash('message', 'Successfully created the User!');
+
+        return redirect('/admin/create');
     }
 
 
-    public function __construct()
-    {
 
-        $this->middleware('auth');
-
-
-    }
 
 
 }

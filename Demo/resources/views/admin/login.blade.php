@@ -8,23 +8,37 @@
 
 </head>
 
-<body class="h-full">
+<body class="h-full" style="font-family: Bahnschrift;">
 
-<div class="bg-yellow-400 h-screen overflow-hidden flex items-center justify-center">
+<div class="bg-slate-400 h-screen overflow-hidden flex items-center justify-center">
+
     <div class="bg-white lg:w-5/12 md:6/12 w-10/12 shadow-3xl">
+
         <div class="bg-gray-800 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full p-4 md:p-8">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="#FFF">
                 <path
                     d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
             </svg>
+
         </div>
+
 
 
         <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
 
+            <h2 class="text-center text-gray-600">Welcome to HR System</h2>
+            <p class="text-center text-xs">Login in. To see it in action.</p>
 
             <div class="px-6 py-6 mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg--900">
+                @if ($errors->any())
 
+                    @foreach ($errors->all() as $error)
+
+                        <div class="mt-4 text-sm text-red-500">{{$error}}</div>
+
+                    @endforeach
+
+                @endif
 
                 <form
                     class="space-y-6"
@@ -75,6 +89,7 @@
                                 >
 
 
+
                             </div>
 
                             <br>
@@ -91,31 +106,29 @@
                             </button>
                         </div>
                     </div>
-
-                    <p class="text-center underline" style="font-family: cursive;">
-                        <a href="{{route('register')}}">
-
-                            Login as Employee
-
-                        </a>
-                    </p>
                 </form>
 
+                <footer >
+
+                    <p class="text-center text-xs mt-20">
+                        Developed By cruisebrains.com © 2023
+                    </p>
+
+                </footer>
 
 
-                @if ($errors->any())
 
-                    @foreach ($errors->all() as $error)
 
-                        <div class="mt-4 text-sm text-red-500">{{$error}}</div>
 
-                    @endforeach
 
-                @endif
 
 
             </div>
         </div>
+
+
+    </div>
+</div>
 
 
 </body>

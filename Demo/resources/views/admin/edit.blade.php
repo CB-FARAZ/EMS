@@ -24,25 +24,28 @@
             <div class="lg:flex items-center space-x-16">
                 <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 py-8 rounded-lg">
 
-                   <h1 class="text-3xl">
-                       CREATE EMPLOYEES
-                   </h1>
+                    <h1 class="text-3xl">
+                        EDIT EMPLOYEES
+                    </h1>
 
 
-                    <form class="my-8 text-sm">
+                    <form class="my-8 text-sm" action="{{ route('edits.process') }}" method="post">
+                        @method('Put')
+                        @csrf
+
                         <div class="flex flex-col my-4">
                             <label for="name" class="text-gray-700">Name</label>
-                            <input type="text" name="name" id="name" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Enter your name">
+                            <input type="text" name="name" id="name" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Enter your name" value="">
                         </div>
 
                         <div class="flex flex-col my-4">
                             <label for="email" class="text-gray-700">Email Address</label>
-                            <input type="email" name="email" id="email" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Enter your email">
+                            <input type="email" name="email" id="email" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Enter your email" value="">
                         </div>
 
                         <div class="flex flex-col my-4">
                             <label for="designation" class="text-gray-700">Designation</label>
-                            <select id="designation" name="designation" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
+                            <select value="" id="designation" name="designation" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
                                 <option value="" selected disabled>Select</option>
                                 <option value="option1">Internee</option>
                                 <option value="option2">Junior Developer</option>
@@ -79,8 +82,20 @@
 
 
                         <div class="my-4 flex items-center justify-end space-x-4">
-                            <button class="bg-blue-600 hover:bg-blue-700 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase">Create</button>
+                            <button class="bg-blue-600 hover:bg-blue-700 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase">Update</button>
                         </div>
+
+
+                        @if ($errors->any())
+
+                            @foreach ($errors->all() as $error)
+
+                                <div class="mt-4 text-sm text-red-500">{{$error}}</div>
+
+                            @endforeach
+
+                        @endif
+
                     </form>
                 </div>
                 <div class="flex items-center justify-center">

@@ -78,8 +78,8 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->id }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->name}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->last_login_at }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->timeIn }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->timeOut }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->time_In }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->time_Out }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->Duration }}</td>
 
                     </tr>

@@ -25,6 +25,12 @@
                         class="bg-gradient-to-r from-cyan-500 to-blue-500 w-96 h-36 border-r-2 rounded-lg ml-2 px-4 py-4 ">
                         Total Employees
 
+                        @auth
+
+                            {{  \App\Models\User::where('type' , 'admin')->count() }}
+
+                        @endauth
+
                     </div>
                     <div
                         class="bg-gradient-to-r from-purple-500 to-pink-500 w-96 h-36 border-r-2 rounded-lg ml-2 px-4 py-4">

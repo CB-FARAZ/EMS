@@ -75,18 +75,15 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($users as $user)
-
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $user->name}}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $user->name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $user->designation }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex space-x-2">
-                                    <form action="{{ route('edits') }}" method="POST">
+                                    <form action="{{ route('edit', ['id' => $user->id]) }}" method="GET">
                                         @csrf
-                                        <input type="hidden" value="{{ $user->id}}" name="id">
-
                                         <button type="submit">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke-width="1.5" stroke="green" class="w-6 h-6">
@@ -95,31 +92,24 @@
                                             </svg>
                                         </button>
                                     </form>
-                                    <div>
-                                        <form action="{{ route('del') }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <input type="hidden" value="{{ $user->id }}" name="id">
-                                            <button type="submit">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                     stroke-width="1.5" stroke="red" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          d="M6 18L18 6M6 6l12 12"/>
-                                                </svg>
-                                            </button>
-                                        </form>
-                                    </div>
-
+                                    <form action="{{ route('del') }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input type="hidden" value="{{ $user->id }}" name="id">
+                                        <button type="submit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke-width="1.5" stroke="red" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M6 18L18 6M6 6l12 12"/>
+                                            </svg>
+                                        </button>
+                                    </form>
                                 </div>
-
                             </td>
-
                         </tr>
-
                     @endforeach
-
-
                     </tbody>
+
                 </table>
             </div>
 

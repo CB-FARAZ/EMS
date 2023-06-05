@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->time('check_in_time')->nullable();
             $table->time('check_out_time')->nullable();
             $table->time('total_hours')->nullable();
+            $table->timestamps();
 
 
 

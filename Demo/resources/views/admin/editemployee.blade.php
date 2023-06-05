@@ -28,7 +28,7 @@
                         EDIT EMPLOYEES
                     </h1>
 
-                    <form class="my-8 text-sm" action="{{ route('edit.process') }}" method="POST">
+                    <form class="my-8 text-sm" action="{{ route('edit.process', ['id' => $user->id]) }}" method="POST">
                         @csrf
 
                         <input type="hidden" value="{{ $user->id }}" name="id">

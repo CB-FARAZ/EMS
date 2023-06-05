@@ -75,12 +75,12 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->id }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->name}}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->last_login_at }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->time_In }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->time_Out }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ auth()->user()->Duration }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap"></td>
+                        <td class="px-6 py-4 whitespace-nowrap"></td>
+                        <td class="px-6 py-4 whitespace-nowrap"></td>
+                        <td class="px-6 py-4 whitespace-nowrap"></td>
+                        <td class="px-6 py-4 whitespace-nowrap"></td>
+                        <td class="px-6 py-4 whitespace-nowrap"></td>
 
                     </tr>
 

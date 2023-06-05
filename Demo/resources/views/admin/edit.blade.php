@@ -20,6 +20,8 @@
 <div id="main-content" class="h-full w-full bg-gray-50 relative  lg:ml-64">
     <main class="mr-6 mt-12 px-24 ml-10 bg-gray-200">
 
+
+
         <div class="bg-gray-200 w-full flex items-center justify-center">
             <div class="lg:flex items-center space-x-16">
                 <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 py-8 rounded-lg">
@@ -28,24 +30,37 @@
                         EDIT EMPLOYEES
                     </h1>
 
+                    <a href="{{route('employee')}}">
+                        Back
+                    </a>
 
-                    <form class="my-8 text-sm" action="{{ route('edits.process') }}" method="post">
+
+                    @if(Session::has('message'))
+
+                        <p class="text-green-400">{{ Session::get('message') }}</p>
+
+
+                    @endif
+
+
+
+                    <form class="my-8 text-sm" action="{{ route('edit.process', ['id' => $user->id]) }}" method="post">
                         @method('Put')
                         @csrf
 
                         <div class="flex flex-col my-4">
                             <label for="name" class="text-gray-700">Name</label>
-                            <input type="text" name="name" id="name" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Enter your name" value="">
+                            <input type="text" name="name" id="name" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Enter your name" value="{{ $user->name }}">
                         </div>
 
                         <div class="flex flex-col my-4">
                             <label for="email" class="text-gray-700">Email Address</label>
-                            <input type="email" name="email" id="email" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Enter your email" value="">
+                            <input type="email" name="email" id="email" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Enter your email" value="{{ $user->email }}">
                         </div>
 
                         <div class="flex flex-col my-4">
                             <label for="designation" class="text-gray-700">Designation</label>
-                            <select value="" id="designation" name="designation" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
+                            <select value="{{$user->designation}}" id="designation" name="designation" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
                                 <option value="" selected disabled>Select</option>
                                 <option value="option1">Internee</option>
                                 <option value="option2">Junior Developer</option>

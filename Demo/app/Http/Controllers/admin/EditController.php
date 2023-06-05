@@ -10,8 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use MongoDB\Driver\Session;
-
+use Illuminate\Support\Facades\Session;
 
 
 class EditController extends Controller
@@ -20,20 +19,45 @@ class EditController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('admin.edit', compact('user'));
+        return view('admin/edit', compact('user'));
     }
-    public function update(Request $request , $id)
+
+    public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        $user->update($request->all());
+        $attributes = $request->validate([
 
 
-        \Illuminate\Support\Facades\Session::flash('message', 'Successfully updated the user!');
+            'name' => 'required|max:20',
+            'email' => 'required|max:50',
+            'designation' => 'required',
+            'password' => 'required|min:8',
+            'password_confirmation' => 'required_with:password|same:password|min:8'
 
-        return redirect()->route('edits');
+        ]);
+
+         $user = User::findOrFail($id);
+
+         $user->name = $attributes['name'];
+
+         $user->email = $attributes['email'];
+
+         $user->designation = $attributes['designation'];
+
+          $user->password = $attributes['password'];
+
+
+         $designation = $request->input('designation');
+
+         $user->designation = $designation;
+
+         $user->save();
+
+        Session::flash('message', 'Successfully updated the User!');
+
+        return redirect()->route('edit.process', ['id' => $id]);
     }
 
 }
+
 
 

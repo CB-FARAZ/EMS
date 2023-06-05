@@ -6,6 +6,7 @@
     use App\Http\Controllers\Controller;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Session;
 
 
     class AdminController extends Controller
@@ -20,22 +21,21 @@
         public function accountInfoStore(Request $request)
         {
             $request->validate([
-
                 'name' => 'required',
                 'email' => 'required',
-
+                'password' => 'required'
             ]);
 
-            $user = Auth::user()->update($request->except(['_token']));
+            $user = Auth::user();
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->save();
 
-            if ($user) {
+            Session::flash('message', 'Profile Updated');
 
-                $message = "Profile updated successfully.";
-
-            }
-
-            return redirect()->route('settings')->with('account_message', $message);
+            return redirect()->route('profile');
         }
     }
+
 
 

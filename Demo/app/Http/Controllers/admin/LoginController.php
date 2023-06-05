@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Attendence;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
@@ -22,7 +21,6 @@ class LoginController extends Controller
         return view('admin/login');
 
     }
-
 
 
     /**
@@ -56,7 +54,7 @@ class LoginController extends Controller
                 );
         }
 
-        User::where('email' , $request->email)->update([
+        User::where('email', $request->email)->update([
             'status' => 'active'
 
         ]);
@@ -68,16 +66,27 @@ class LoginController extends Controller
         ]);
 
 
-        auth()->login($user );
 
-        return redirect('admin/main');
+
+        $adminEmail = 'jeffrey@laracasts.com';
+
+        $user = User::where('email', $adminEmail)->first();
+
+        if ($user && $user->isAdmin()) {
+
+            return redirect('admin/dashboard');
+        }
+
+
+         auth()->login($user);
+
+         return redirect('employee/dashboard');
+
+
+
+
 
     }
-
-
-
-
-
 
 
 }

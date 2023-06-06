@@ -68,20 +68,24 @@ class LoginController extends Controller
 
 
 
+
+        auth()->login($user);
+
         $adminEmail = 'jeffrey@laracasts.com';
 
-        $user = User::where('email', $adminEmail)->first();
+        $user = User::where('email', $request->email)->first();
 
-        if ($user && $user->isAdmin()) {
+        if ($adminEmail == $user->email) {
+
 
             return redirect('admin/dashboard');
+
+        } else {
+
+
+            return redirect('employee/dashboard');
+
         }
-
-
-         auth()->login($user);
-
-         return redirect('employee/dashboard');
-
 
 
 

@@ -11,9 +11,9 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->date('date')->default(date('Y-m-d'));
-            $table->time('check_in_time')->nullable();
-            $table->time('check_out_time')->nullable();
-            $table->time('total_hours')->nullable();
+            $table->time('time_in')->nullable();
+            $table->time('time_out')->nullable();
+            $table->time('duration')->nullable();
             $table->timestamps();
 
 

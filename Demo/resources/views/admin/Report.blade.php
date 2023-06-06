@@ -5,10 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Reports</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body style="font-family: Bahnschrift;">
 
 @include('components.layout')
 
@@ -24,7 +24,7 @@
 
                 <div class="text-gray-500 text-4xl  ml-4 ">
 
-                 REPORTS
+                    REPORTS
 
                 </div>
 
@@ -34,55 +34,59 @@
 
                 </p>
 
+                   @foreach($attendences as $attendence)
 
-                <div class="flex space-x-8">
-                    <input type="date" class="rounded-xl px-2 py-2">
-                    <label for="designation"></label><select id="designation" name="designation" class="p-3 text-start border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
-                        <option value="" selected disabled>Select</option>
-                        <option value="option1">Internee</option>
-                        <option value="option2">Junior Developer</option>
-                        <option value="option3">Senior Developer</option>
-                        <option value="option4">Full Stack</option>
-                    </select>
-                    <button class="bg-blue-600 hover:bg-blue-700 rounded-lg px-6 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase">GO</button>
+                   @endforeach
+                <div class="flex space-x-8 mt-2">
+                    <form action="{{ route('report.search') }}" method="GET">
+                        <input type="date" name="date" class="rounded-xl px-2 py-2" value="{{ date('Y-m-d') }}">
+                        <button type="submit"
+                                class="bg-blue-600 hover:bg-blue-700 rounded-lg px-6 py-2 text-gray-100 hover:shadow-xl">
+                            Search
+                        </button>
+                    </form>
                 </div>
 
 
                 <br>
-                <table class="w-full     divide-y divide-gray-200">
+                <table class="w-full divide-y divide-gray-200">
                     <thead>
                     <tr>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase  border-l-2">
                             Sr.#
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Name
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase  border-l-2">
+                            User ID
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                           Date
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase  border-l-2">
+                            Date
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase  border-l-2">
                             Time-In
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase  border-l-2">
                             Time-Out
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase  border-l-2">
                             Duration
                         </th>
 
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap"></td>
-                        <td class="px-6 py-4 whitespace-nowrap"></td>
-                        <td class="px-6 py-4 whitespace-nowrap"></td>
-                        <td class="px-6 py-4 whitespace-nowrap"></td>
-                        <td class="px-6 py-4 whitespace-nowrap"></td>
-                        <td class="px-6 py-4 whitespace-nowrap"></td>
+                    @foreach($attendences as $attendence)
 
-                    </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->id }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->user_id }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->date }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->time_in }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->time_out }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->duration }}</td>
+
+                        </tr>
+
+                    @endforeach
 
                     </tbody>
                 </table>

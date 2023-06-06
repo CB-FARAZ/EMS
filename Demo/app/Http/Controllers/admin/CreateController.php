@@ -42,7 +42,7 @@ class CreateController extends Controller
             'email' => 'required|max:50',
             'designation' => 'required',
             'type' => 'required',
-            'password' => 'required|min:8',
+            'password' => 'required|confirmed',
             'password_confirmation' => 'required_with:password|same:password|min:8'
 
         ]);

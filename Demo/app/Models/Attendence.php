@@ -11,9 +11,9 @@ class Attendence extends Model
     protected $table = 'attendences';
     protected $fillable = [
         'user_id',
-        'check_in_time',
-        'check_out_time',
-        'total_hours'
+        'time_in',
+        'time_out',
+        'duration'
     ];
 
 
@@ -21,4 +21,6 @@ class Attendence extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
+
 }

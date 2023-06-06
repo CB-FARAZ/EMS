@@ -20,7 +20,8 @@ class UserController extends Controller
     {
         User::where('id', $request->id)->delete();
 
-        return redirect()->route('show');
+        Session::flash('message', 'Successfully Deleted the User!');
+        return redirect()->route('employee');
     }
 
 

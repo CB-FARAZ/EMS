@@ -1,8 +1,16 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\CreateController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\EditController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\logoutController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\employee\AttendenceController;
+use App\Http\Controllers\employee\SettingController;
 use Illuminate\Support\Facades\Route;
+
 
 //use App\Http\Controllers\admin\RegisterController;
 
@@ -27,7 +35,7 @@ Route::get('/', function () {
 
 //Admin Routes
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin' ], function () {
 
     // login
 
@@ -39,7 +47,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     //Dashboard Route
 
-    Route::get('dashboard', fn() => view('admin/dash'))->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //logout
 
@@ -47,55 +55,75 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Add Users
 
-    Route::get('create', [\App\Http\Controllers\admin\CreateController::class, 'index'])->name('create');
+    Route::get('create', [CreateController::class, 'index'])->name('create');
 
     // Delete Employee
 
-    Route::delete('delete', [\App\Http\Controllers\admin\UserController::class, 'destroy'])->name('del');
+    Route::delete('delete', [UserController::class, 'destroy'])->name('del');
 
     // Display edit form for employee
-    Route::get('edit/{id}', [\App\Http\Controllers\admin\EditController::class, 'index'])->name('edit');
+
+    Route::get('edit/{id}', [EditController::class, 'index'])->name('edit');
 
     // Process employee update
-    Route::match(['put', 'post'], 'edit/{id}', [\App\Http\Controllers\admin\EditController::class, 'update'])->name('edit.process');
+
+    Route::match(['put', 'post'], 'edit/{id}', [EditController::class, 'update'])->name('edit.process');
 
     // Authentication process
 
-    Route::post('create/user', [\App\Http\Controllers\admin\CreateController::class, 'Request'])->name('create.process');
+    Route::post('create/user', [CreateController::class, 'Request'])->name('create.process');
 
     // Admin Setting
 
-    Route::get('settings', [\App\Http\Controllers\admin\AdminController::class, 'accountInfo'])->name('profile');
+    Route::get('settings', [AdminController::class, 'accountInfo'])->name('profile');
 
-    Route::post('update', [\App\Http\Controllers\admin\AdminController::class, 'accountInfoStore'])->name('update');
+    Route::post('update', [AdminController::class, 'accountInfoStore'])->name('update');
 
     // All employee
 
-    Route::get('employee', [\App\Http\Controllers\admin\UserController::class, 'index'])->name('employee');
+    Route::get('employee', [UserController::class, 'index'])->name('employee');
 
     // Reports
 
-    Route::get('reports', fn() => view('admin/Report'))->name('reports');
+    Route::get('reports',[\App\Http\Controllers\admin\ReportController::class , 'index'])->name('reports');
+
+    Route::get('reports/update' , [\App\Http\Controllers\admin\ReportController::class , 'search'])->name('report.search');
 
 
 });
 
 
-    //Employee Route
+//Employee Route
 
-    Route::group(['prefix' => 'employee'], function () {
+Route::group(['prefix' => 'employee'], function () {
 
     //Employee Dashboard
 
-    Route::get('dashboard', fn() => view('employee.dash'))->name('emp/dashboard');
+    Route::get('dashboard', [App\Http\Controllers\employee\DashboardController::class, 'index'])->name('emp/dashboard');
 
     //Employee Attendence
 
-    Route::get('attendence', [\App\Http\Controllers\employee\AttendenceController::class, 'index'])->name('attendence');
+    Route::get('attendence', [AttendenceController::class, 'index'])->name('attendence');
 
-    Route::post('timer/start' , [\App\Http\Controllers\employee\AttendenceController::class , 'starttime'])->name('timer.start');
+    //Start Timer
 
-    Route::post('timer/stop' , [\App\Http\Controllers\employee\AttendenceController::class , 'stoptime'])->name('timer.stop');
+    Route::post('timer/start', [AttendenceController::class, 'starttime'])->name('timer.start');
+
+    //Stop Timer
+
+    Route::post('timer/stop', [AttendenceController::class, 'stoptime'])->name('timer.stop');
+
+    //Employee Profile
+
+    Route::get('settings', [SettingController::class, 'employee'])->name('emp/profile');
+
+    //Employee Update
+
+    Route::post('update', [SettingController::class, 'employeeupdate'])->name('update');
+
+    //Employee's Attendences
+
+    Route::get('all', [AttendenceController::class, 'index'])->name('all');
 
 
 });

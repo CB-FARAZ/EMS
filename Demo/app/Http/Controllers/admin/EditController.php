@@ -35,13 +35,13 @@ class EditController extends Controller
 
         ]);
 
-         $user = User::findOrFail($id);
+          $user = User::findOrFail($id);
 
-         $user->name = $attributes['name'];
+          $user->name = $attributes['name'];
 
-         $user->email = $attributes['email'];
+          $user->email = $attributes['email'];
 
-         $user->designation = $attributes['designation'];
+          $user->designation = $attributes['designation'];
 
           $user->password = $attributes['password'];
 
@@ -54,7 +54,7 @@ class EditController extends Controller
 
         Session::flash('message', 'Successfully updated the User!');
 
-        return redirect()->route('edit.process', ['id' => $id]);
+        return redirect()->route('employee', ['id' => $id]);
     }
 
 }

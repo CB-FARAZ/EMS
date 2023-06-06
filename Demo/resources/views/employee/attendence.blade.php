@@ -32,7 +32,7 @@
     <main class="ml-6">
 
 
-         <h1 class="text-4xl mt-2 ml-64 font-bold">
+         <h1 class="text-5xl mt-2 ml-96 font-bold">
              Mark Your Attendence
          </h1>
 
@@ -42,12 +42,18 @@
             class="w-fit mx-auto h-fit bg-white  shadow rounded-md p-4 md:p-6 xl:p-8 my-6">
 
 
-            <h3 class="flex border-b-2 w-full text-xs">
+{{--            <h3 class="flex border-b-2 w-full text-xs">--}}
 
 
-             <p class=" text-gray-400">Today  Time-In: --</p> {{ auth()->user()->last_login_at }} <p class=" text-gray-400"> -- | Today  Time-Out: --</p> {{auth()->user()->last_login_at}}
+{{--            --}}
 
-            </h3>
+{{--             <p class=" text-gray-400">Today  Time-In: --</p> {{ $attendences[1]->time_in }}--}}
+
+{{--             <p class=" text-gray-400"> -- | Today  Time-Out: --</p> {{ $attendences[1]->time_out }}--}}
+
+
+
+{{--            </h3>--}}
 
 
 
@@ -127,7 +133,7 @@
         class="w-96 mx-auto mt-36 ">
 
         <p class=" text-gray-400">
-            &copy; 2023 <a href="#" class="hover:underline" target="_blank">Cruisebrains</a>. All rights
+            &copy; 2023 <a href="#" class="hover:underline" target="_blank">Cruise brains</a>. All rights
             reserved.
         </p>
 

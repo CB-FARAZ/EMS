@@ -6,15 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 //use http\Env\Request;
 
 class logoutController extends Controller
 {
 
-    protected function logout(): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    protected function logout(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        $userid = \auth()->user()->email;
+        $userid = auth()->user()->email;
         User::where('email', $userid)->update([
 
             'status' => 'Inactive'
@@ -22,14 +24,14 @@ class logoutController extends Controller
         ]);
 
 
-        $userid = \auth()->user()->email;
+        $userid = auth()->user()->email;
         User::where('email', $userid)->update([
 
             'last_login_at' => Carbon::now()
 
         ]);
 
-        auth()->logout();
+        Auth::logout();
 
         return redirect('/admin/login');
 

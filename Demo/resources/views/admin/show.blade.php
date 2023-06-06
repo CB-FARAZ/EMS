@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>EMS</title>
+    <title>Employee</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body style="font-family: Bahnschrift;" class="bg-gray-200">
+<body style="font-family: Bahnschrift;">
 
 <!-- This is an example component -->
 
@@ -19,6 +19,14 @@
 <div id="main-content" class="h-full w-full bg-gray-50 relative  lg:ml-64">
     <main class="ml-10 px-12">
 
+
+
+        @if(Session::has('message'))
+
+            <p class="text-green-400 text-xl">{{ Session::get('message') }}</p>
+
+
+        @endif
 
         <div
             class=" bg-white md:flex md:items-center md:justify-between shadow rounded-md p-4 md:p-6 xl:p-8 my-6 mx-4 ">
@@ -41,14 +49,7 @@
                         </button>
 
                     </div>
-                    {{--                        <div class="">--}}
-                    {{--                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">--}}
-                    {{--                                <a href="{{route('edits')}}">--}}
-                    {{--                                    Edit--}}
-                    {{--                                </a>--}}
-                    {{--                            </button>--}}
 
-                    {{--                        </div>--}}
                 </div>
 
                 <br>
@@ -82,16 +83,16 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $user->designation }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex space-x-2">
-                                    <form action="{{ route('edit', ['id' => $user->id]) }}" method="GET">
-                                        @csrf
+                                    <a href="{{ route('edit', ['id' => $user->id]) }}" target="_blank" >
+
                                         <button type="submit">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke-width="1.5" stroke="green" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                       d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"/>
-                                            </svg>
+                                             </svg>
                                         </button>
-                                    </form>
+                                    </a>
                                     <form action="{{ route('del') }}" method="POST">
                                         @method('DELETE')
                                         @csrf

@@ -5,98 +5,60 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add</title>
+    <title>Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
-<body style="font-family: Bahnschrift;">
+<body style="font-family: Bahnschrift;" class="bg-gray-200">
 
 <!-- This is an example component -->
 
-@include('components.layout')
+@include('components.userslayout')
 
-
-<div id="main-content" class="h-full w-full bg-gray-50 relative lg:ml-64">
+<div class="bg-gray-900 opacity-50"></div>
+<div id="main-content" class="h-full w-full bg-gray-50 relative  lg:ml-64">
     <main class="mr-6 mt-12 px-24 ml-10 bg-gray-200">
+
+
+        @if (Session::has('message'))
+            <div
+                class="{{ Session::get('alert-class', 'bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative duration-100') }}"
+                role="alert">
+                <span class="block sm:inline">{{ Session::get('message') }}</span>
+            </div>
+        @endif
+
 
         <div class="bg-gray-200 w-full flex items-center justify-center">
             <div class="lg:flex items-center space-x-16">
                 <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 py-8 rounded-lg">
 
-                    <h1 class="text-3xl ">
-                        CREATE EMPLOYEES
-                    </h1>
-
-                    @if(Session::has('message'))
-
-                        <p class="text-green-400">{{ Session::get('message') }}</p>
-
-                    @endif
+                    <h2 class="text-center text-5xl font-bold tracking-wide text-gray-800">Profile</h2>
+                    <p class="text-center text-sm text-gray-600 mt-2 underline  ">Edit Your Profile</p>
 
 
-                    <form class="my-8 text-sm" action="{{ route('create.process') }}" method="POST">
+                    <form class="my-8 text-sm"
+
+                          action="{{route('update', ['id' => $user->id])}}"
+                          method="POST"
+                    >
+
                         @csrf
+
                         <div class="flex flex-col my-4">
                             <label for="name" class="text-gray-700">Name</label>
                             <input type="text" name="name" id="name"
                                    class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
-                                   placeholder="Enter your name">
+                                   placeholder="Enter your name" value="{{ $user->name }}">
                         </div>
 
-                        @error('name')
-
-                        <div class="mt-2 text-sm text-red-500">{{$message}}</div>
-
-                        @enderror
-
                         <div class="flex flex-col my-4">
-                            <label for="email"
-                                   class="text-gray-700"
-                            >Email Address
-                            </label>
-                            <input type="email"
-                                   name="email"
-                                   id="email"
+                            <label for="email" class="text-gray-700">Email Address</label>
+                            <input type="email" name="email" id="email"
                                    class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900"
-                                   placeholder="Enter your email">
+                                   placeholder="Enter your email" value="{{$user->email}}">
                         </div>
-                        @error('email')
-
-                        <div class="mt-2 text-sm text-red-500">{{$message}}</div>
-
-                        @enderror
-
-                        <div class="flex flex-col my-4">
-                            <label for="designation" class="text-gray-700">Designation</label>
-                            <select id="designation" name="designation"
-                                    class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
-                                <option selected disabled>Select</option>
-                                <option>Internee</option>
-                                <option>Junior Developer</option>
-                                <option>Senior Developer</option>
-                                <option>Full Stack</option>
-                            </select>
-                        </div>
-                        @error('designation')
-
-                        <div class="mt-2 text-sm text-red-500">{{$message}}</div>
-
-                        @enderror
-
-                        <div class="flex flex-col my-4">
-                            <label for="type" class="text-gray-700">type</label>
-                            <select id="type" name="type"
-                                    class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
-
-                                <option selected disabled>Select</option>
-                                <option>Admin</option>
-                                <option>User</option>
-
-                            </select>
-
-                        </div>
-
 
                         <div class="flex flex-col my-4">
                             <label for="password" class="text-gray-700">Password</label>
@@ -122,11 +84,6 @@
                                 </button>
                             </div>
                         </div>
-                        @error('password')
-
-                        <div class="mt-2 text-sm text-red-500">{{$message}}</div>
-
-                        @enderror
 
                         <div class="flex flex-col my-4">
                             <label for="password_confirmation" class="text-gray-700">Password Confirmation</label>
@@ -153,30 +110,25 @@
                                 </button>
                             </div>
                         </div>
-                        @error('password_confirmation')
-
-                        <div class="mt-4 text-sm text-red-500">{{$message}}</div>
-
-                        @enderror
 
 
                         <div class="my-4 flex items-center justify-end space-x-4">
                             <button
                                 class="bg-blue-600 hover:bg-blue-700 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase">
-                                Create
+                                Update
                             </button>
                         </div>
 
 
-                        {{--                        @if ($errors->any())--}}
+                        @if ($errors->any())
 
-                        {{--                            @foreach ($errors->all() as $error)--}}
+                            @foreach ($errors->all() as $error)
 
-                        {{--                                <div class="mt-4 text-sm text-red-500">{{$error}}</div>--}}
+                                <div class="mt-4 text-sm text-red-500">{{$error}}</div>
 
-                        {{--                            @endforeach--}}
+                            @endforeach
 
-                        {{--                        @endif--}}
+                        @endif
                     </form>
                 </div>
                 <div class="flex items-center justify-center">

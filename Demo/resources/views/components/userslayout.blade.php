@@ -88,7 +88,7 @@
 
 
                             <li>
-                                <a href=""
+                                <a href="{{route('emp/profile')}}"
                                    class="text-2xl text-teal-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
                                   >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

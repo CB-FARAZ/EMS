@@ -69,6 +69,14 @@
             <div
                 class="bg-gradient-to-r from-purple-500 to-pink-200 w-96 h-36 border-r-2 rounded-lg ml-2 px-4 py-4 text-xl">
                 Today Present
+
+
+        {{--                @auth--}}
+
+        {{--                    {{  \App\Models\Attendence::where('total_present' , 1)->count() }}--}}
+
+        {{--                @endauth--}}
+
                 <svg height="auto" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M0 96.85c5-.406 40-1.837 50-4.064 10-2.228 40-15.282 50-18.208 10-2.927 40-9.487 50-11.06 10-1.572 40-3.16 50-4.665 10-1.504 40-10.378 50-10.376 10 .001 40 14.276 50 10.393 10-3.883 40-43.189 50-49.224 10-6.035 45-10.014 50-11.127"
@@ -190,7 +198,7 @@
         class="w-96 mx-auto mt-36 ">
 
         <p class=" text-gray-400">
-            &copy; 2023 <a href="#" class="hover:underline" target="_blank">Cruisebrains</a>. All rights
+            &copy; 2023 <a href="#" class="hover:underline" target="_blank">CruiseBrains</a>. All rights
             reserved.
         </p>
 

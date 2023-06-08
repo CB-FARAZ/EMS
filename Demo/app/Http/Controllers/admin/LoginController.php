@@ -66,9 +66,6 @@ class LoginController extends Controller
         ]);
 
 
-
-
-
         auth()->login($user);
 
         $adminEmail = 'jeffrey@laracasts.com';
@@ -86,8 +83,6 @@ class LoginController extends Controller
             return redirect('employee/dashboard');
 
         }
-
-
 
 
     }

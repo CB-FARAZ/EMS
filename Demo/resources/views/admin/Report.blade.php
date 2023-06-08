@@ -30,14 +30,14 @@
 
                 <hr>
                 <p class="text-base ml-2 text-gray-400">
-                    You Can Select Month and User For a Precise Report.
+                    You Can Select Month For a Precise Report.
 
                 </p>
 
                    @foreach($attendences as $attendence)
 
                    @endforeach
-                <div class="flex space-x-8 mt-2">
+                <div class="flex space-x-8 mt-6">
                     <form action="{{ route('report.search') }}" method="GET">
                         <input type="date" name="date" class="rounded-xl px-2 py-2" value="{{ date('Y-m-d') }}">
                         <button type="submit"
@@ -99,7 +99,7 @@
         class="w-96 mx-auto mt-36 ">
 
         <p class="text-gray-400">
-            &copy; 2023 <a href="#" class="hover:underline" target="_blank">Cruisebrains</a>. All rights
+            &copy; 2023 <a href="#" class="hover:underline" target="_blank">CruiseBrains</a>. All rights
             reserved.
         </p>
 

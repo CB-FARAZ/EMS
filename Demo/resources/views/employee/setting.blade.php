@@ -197,7 +197,7 @@
         class="w-96 mx-auto mt-36 ">
 
         <p class=" text-gray-400">
-            &copy; 2023 <a href="#" class="hover:underline" target="_blank">Cruisebrains</a>. All rights
+            &copy; 2023 <a href="#" class="hover:underline" target="_blank">CruiseBrains</a>. All rights
             reserved.
         </p>
 

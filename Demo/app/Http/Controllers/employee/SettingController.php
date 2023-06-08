@@ -4,9 +4,9 @@ namespace App\Http\Controllers\employee;
 
 
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Session;
 
 
 class SettingController extends Controller

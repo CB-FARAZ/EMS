@@ -4,6 +4,7 @@ namespace App\Http\Controllers\employee;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendence;
+use http\Client\Request;
 
 class DashboardController extends Controller
 {
@@ -15,17 +16,7 @@ class DashboardController extends Controller
         return view('employee.dash', compact('attendences'));
     }
 
-    public function search(Request $request)
-    {
-        $keyword = $request->input('month');
 
-        $attendances = Attendence::where('employee_name', 'like', '%' . $keyword . '%')
-            ->orWhere('status', 'like', '%' . $keyword . '%')
-            ->orWhere('date', 'like', '%' . $keyword . '%')
-            ->get();
-
-        return view('employee.attendance', compact('attendances'));
-    }
 
 
 }

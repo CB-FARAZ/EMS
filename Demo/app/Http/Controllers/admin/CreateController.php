@@ -6,10 +6,10 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
+use Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+use Session;
 
 
 class CreateController extends Controller
@@ -81,7 +81,9 @@ class CreateController extends Controller
         $user->save();
 
 
-        Session::flash('message', 'Successfully created the User!');
+        Session::flash('message', 'Successfully Created the User Profile.');
+
+        Session::flash('alert-class', 'bg-green-100 border border-green-400 px-4 py-3 rounded relative duration-50');
 
         return redirect('/admin/create');
     }

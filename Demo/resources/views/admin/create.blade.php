@@ -24,15 +24,19 @@
             <div class="lg:flex items-center space-x-16">
                 <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 py-8 rounded-lg">
 
+                    @if (Session::has('message'))
+                        <div
+                            class="{{ Session::get('alert-class', 'bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative duration-100') }}"
+                            >
+                            <span class="block sm:inline">{{ Session::get('message') }}</span>
+                        </div>
+                    @endif
+                        <br>
                     <h1 class="text-3xl ">
                         CREATE EMPLOYEES
                     </h1>
 
-                    @if(Session::has('message'))
 
-                        <p class="text-green-400">{{ Session::get('message') }}</p>
-
-                    @endif
 
 
                     <form class="my-8 text-sm" action="{{ route('create.process') }}" method="POST">
@@ -245,7 +249,7 @@
         class="w-96 mx-auto mt-36 ">
 
         <p class=" text-gray-400">
-            &copy; 2023 <a href="#" class="hover:underline" target="_blank">Cruisebrains</a>. All rights
+            &copy; 2023 <a href="#" class="hover:underline" target="_blank">CruiseBrains</a>. All rights
             reserved.
         </p>
 

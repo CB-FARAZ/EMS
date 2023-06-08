@@ -30,7 +30,7 @@
 
                     <h1 class="text-3xl">
                         EDIT EMPLOYEES
-                    </h1>
+                        </h1>
 
 
 
@@ -60,7 +60,7 @@
 
                         <div class="flex flex-col my-4">
                             <label for="designation" class="text-gray-700">Designation</label>
-                            <select id="designation" name="designation" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
+                            <select id="designation" name="designation"  class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
                                 <option  selected disabled>Select</option>
                                 <option>Internee</option>
                                 <option >Junior Developer</option>
@@ -68,6 +68,11 @@
                                 <option >Full Stack</option>
                             </select>
                         </div>
+                        @error('designation')
+
+                        <div class="mt-2 text-sm text-red-500">{{$message}}</div>
+
+                        @enderror
 
 
                         <div class="flex flex-col my-4">
@@ -82,6 +87,11 @@
                             </div>
                         </div>
 
+                        @error('password')
+
+                        <div class="mt-2 text-sm text-red-500">{{$message}}</div>
+
+                        @enderror
                         <div class="flex flex-col my-4">
                             <label for="password_confirmation" class="text-gray-700">Password Confirmation</label>
                             <div x-data="{ show: false }" class="relative flex items-center mt-2">
@@ -93,6 +103,11 @@
                                 </button>
                             </div>
                         </div>
+                        @error('password_confirmation')
+
+                        <div class="mt-2 text-sm text-red-500">{{$message}}</div>
+
+                        @enderror
 
 
 
@@ -103,15 +118,6 @@
                         </div>
 
 
-                        @if ($errors->any())
-
-                            @foreach ($errors->all() as $error)
-
-                                <div class="mt-4 text-sm text-red-500">{{$error}}</div>
-
-                            @endforeach
-
-                        @endif
 
                     </form>
 
@@ -128,7 +134,7 @@
         class="w-96 mx-auto mt-36 ">
 
         <p class=" text-gray-400">
-            &copy; 2023 <a href="#" class="hover:underline" target="_blank">Cruisebrains</a>. All rights
+            &copy; 2023 <a href="#" class="hover:underline" target="_blank">CruiseBrains</a>. All rights
             reserved.
         </p>
 

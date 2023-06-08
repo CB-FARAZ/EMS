@@ -19,7 +19,6 @@
 <div id="main-content" class="h-full w-full shadow-2xl bg-gray-50 relative overflow-y-auto lg:ml-64">
     <main class="ml-20">
 
-
         <div class=" flex mt-6 mb-12 gap-4 ml-20 ">
             <div
                 class="bg-gradient-to-r from-cyan-300 to-blue-500 w-96 h-36 border-r-2 rounded-lg ml-2 px-4 py-4 text-xl">
@@ -34,7 +33,7 @@
                                 @endauth
 
 
-                           </span>
+
 
                 <svg height="auto" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -69,6 +68,13 @@
             <div
                 class="bg-gradient-to-r from-purple-500 to-pink-200 w-96 h-36 border-r-2 rounded-lg ml-2 px-4 py-4 text-xl">
                 Today Present
+
+
+                {{--                @auth--}}
+
+                {{--                    {{  \App\Models\Attendence::where('total_present' , 1)->count() }}--}}
+
+                {{--                @endauth--}}
 
 
                 <svg height="auto" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
@@ -148,19 +154,13 @@
 
                 <div class="container mx-auto p-4">
                     <div class="ml-12 items-center justify-center">
-                        <div class="w-1/2">
-                            <form class="flex"
-                                  action=""
-                                  method="POST">
-                                @csrf
-                                <div class="mr-2">
-                                    <label for="start-date" class="block text-sm font-medium text-gray-700">
-                                    </label>
-                                    <input type="date" id="start-date" name="date"
-                                           class="w-full py-2 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                </div>
+
+                        <div class="flex space-x-8 mt-2">
+                            <form action="{{ route('emp.search') }}" method="GET">
+                                <input type="date" name="date" class="rounded-xl px-2 py-2" required/>
                                 <button type="submit"
-                                        class="bg-green-500 hover:bg-green-400 text-white py-2 px-4 rounded-sm">Search
+                                        class="bg-green-600 hover:bg-green-400 rounded-lg px-6 py-2 text-gray-100 hover:shadow-xl">
+                                    Search
                                 </button>
                             </form>
                         </div>
@@ -196,13 +196,21 @@
                     @foreach($attendences as $attendence)
 
                         <tr>
+
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->id }}</td>
+
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{  $attendence->user_id }}</td>
+
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->date }}</td>
+
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->time_in }}</td>
+
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->time_out }}</td>
+
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->duration }}</td>
+
                         </tr>
+
                     @endforeach
 
                     </tbody>
@@ -216,7 +224,8 @@
         class="w-96 mx-auto mt-36 ">
 
         <p class=" text-gray-400">
-            &copy; 2023 <a href="#" class="hover:underline" target="_blank">Cruisebrains</a>. All rights
+            &copy; 2023 <a href="https://www.cruisebrains.com/" class="hover:underline" target="_blank">CruiseBrains</a>.
+            All rights
             reserved.
         </p>
 

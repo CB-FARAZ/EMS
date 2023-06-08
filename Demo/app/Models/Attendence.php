@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Models;
-use App\Models\User;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
 
 class Attendence extends Model
 
@@ -13,14 +15,23 @@ class Attendence extends Model
         'user_id',
         'time_in',
         'time_out',
-        'duration'
+        'duration',
+        'total_present'
     ];
 
+    protected $dates = [
+
+        'time_in',
+        'time_out'
+
+
+    ];
 
     public function User()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
+
 
 
 }

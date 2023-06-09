@@ -8,16 +8,17 @@
     <title>Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-
 </head>
-<body style="font-family: Bahnschrift;" class="">
+<body style="font-family: Bahnschrift;">
 
 <!-- This is an example component -->
 
 @include('components.userslayout')
 
-<div id="main-content" class="h-full w-full shadow-2xl bg-gray-50 relative overflow-y-auto lg:ml-64">
-    <main class="ml-20">
+<div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
+<div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
+    <main class="ml-6">
+
 
         <div class=" flex mt-6 mb-12 gap-4 ml-20 ">
             <div
@@ -30,10 +31,10 @@
 
                         {{  \App\Models\User::where('type' , 'user')->count() }}
 
-                                @endauth
+                               @endauth
 
 
-
+                           </span>
 
                 <svg height="auto" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -68,13 +69,6 @@
             <div
                 class="bg-gradient-to-r from-purple-500 to-pink-200 w-96 h-36 border-r-2 rounded-lg ml-2 px-4 py-4 text-xl">
                 Today Present
-
-
-                {{--                @auth--}}
-
-                {{--                    {{  \App\Models\Attendence::where('total_present' , 1)->count() }}--}}
-
-                {{--                @endauth--}}
 
 
                 <svg height="auto" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
@@ -142,9 +136,9 @@
         <div
             class=" bg-white md:flex md:items-center md:justify-between shadow rounded-md p-4 md:p-6 xl:p-8 my-6 mx-4 ">
 
-            <div class="w-full bg-white  rounded-lg shadow-2xl">
+            <div class="w-full bg-white rounded-lg shadow-md">
 
-                <div class="text-4xl ml-20 text-gray-500 ">
+                <div class="text-4xl underline text-gray-400 ">
 
                     TODAY'S ATTENDANCE LIST
 
@@ -152,65 +146,63 @@
                 </div>
                 <br>
 
-                <div class="container mx-auto p-4">
-                    <div class="ml-12 items-center justify-center">
+                <div class="flex space-x-8 mt-4 mx-12">
+                    <form
+                        action="{{ route('emp.search') }}"
+                        method="GET">
 
-                        <div class="flex space-x-8 mt-2">
-                            <form action="{{ route('emp.search') }}" method="GET">
-                                <input type="date" name="date" class="rounded-xl px-2 py-2" required/>
-                                <button type="submit"
-                                        class="bg-green-600 hover:bg-green-400 rounded-lg px-6 py-2 text-gray-100 hover:shadow-xl">
-                                    Search
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+                        <input
+                            type="date"
+                            name="date"
+                            class="rounded-xl px-2 py-2"
+                            required/>
+
+                        <button
+                            type="submit"
+                            class="bg-green-600 hover:bg-green-400 rounded-lg px-6 py-2 text-gray-100 hover:shadow-xl">
+                            Search
+
+                        </button>
+
+
+                    </form>
+
                 </div>
                 <br>
                 <table class="w-full     divide-y divide-gray-200">
                     <thead>
                     <tr>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 border-l-2">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Sr.#
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 border-l-2">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             User
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 border-l-2">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Date
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 border-l-2">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Time-In
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 border-l-2">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Time-Out
                         </th>
-                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 border-l-2">
+                        <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Duration
                         </th>
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-
-
                     @foreach($attendences as $attendence)
 
                         <tr>
-
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->id }}</td>
-
-                            <td class="px-6 py-4 whitespace-nowrap border-l-2">{{  $attendence->user_id }}</td>
-
+                            <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->user_id }}</td>
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->date }}</td>
-
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->time_in }}</td>
-
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->time_out }}</td>
-
                             <td class="px-6 py-4 whitespace-nowrap border-l-2">{{ $attendence->duration }}</td>
-
                         </tr>
-
                     @endforeach
 
                     </tbody>
@@ -224,8 +216,7 @@
         class="w-96 mx-auto mt-36 ">
 
         <p class=" text-gray-400">
-            &copy; 2023 <a href="https://www.cruisebrains.com/" class="hover:underline" target="_blank">CruiseBrains</a>.
-            All rights
+            &copy; 2023 <a href="#" class="hover:underline" target="_blank">CruiseBrains</a>. All rights
             reserved.
         </p>
 

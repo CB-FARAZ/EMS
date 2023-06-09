@@ -10,23 +10,27 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
-<body style="font-family: Bahnschrift;" class="bg-gray-200">
+<body style="font-family: Bahnschrift;">
 
 <!-- This is an example component -->
 
 @include('components.userslayout')
 
-<div class="bg-gray-900 opacity-50"></div>
 <div id="main-content" class="h-full w-full bg-gray-50 relative  lg:ml-64">
     <main class="mr-6 mt-12 px-24 ml-10 bg-gray-200">
 
 
-        @if (Session::has('message'))
+    @if (Session::has('message'))
             <div
+
                 class="{{ Session::get('alert-class', 'bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative duration-100') }}"
+
                 role="alert">
+
                 <span class="block sm:inline">{{ Session::get('message') }}</span>
+
             </div>
+
         @endif
 
 
@@ -120,7 +124,9 @@
                         </div>
 
 
-                        @if ($errors->any())
+
+
+                    @if ($errors->any())
 
                             @foreach ($errors->all() as $error)
 

@@ -9,7 +9,7 @@ content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=
 <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body style="font-family: Bahnschrift;" class="bg-gray-200">
+<body style="font-family: Bahnschrift;">
 
 <!-- This is an example component -->
 
@@ -31,35 +31,17 @@ Welcome
 
 </nav>
 <div class="flex pt-6">
-<aside id="sidebar"
-class="space-y-4 fixed hidden z-20 h-full  left-0 top-4 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
-aria-label="Sidebar">
+    <aside id="sidebar"
+           class="space-y-4 fixed hidden z-20 h-full  left-0 top-4 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+           aria-label="Sidebar">
 
-<h1 class="text-center text-3xl text-gray-900 ">
+<h1 class="text-center text-3xl text-gray-900">
 CRUISEBRAINS &copy;
 </h1>
 <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200  pt-0 h-full">
 <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
 <div class="flex-1 px-3  divide-y space-y-1 ">
     <ul class="space-y-2 pb-2">
-        <li>
-            <form action="#" method="GET" class="hidden">
-                <label for="mobile-search" class="sr-only">Search</label>
-                <div class="relative">
-                    <div
-                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
-                        </svg>
-                    </div>
-                    <input type="text" name="email" id="mobile-search"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:ring-cyan-600 block w-full pl-10 p-2.5"
-                           placeholder="Search">
-                </div>
-            </form>
-        </li>
         <li>
             <a href="{{ route('emp/dashboard')}}"
                class="text-2xl text-teal-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
@@ -127,3 +109,4 @@ CRUISEBRAINS &copy;
 
 
 </aside>
+

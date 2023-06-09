@@ -34,6 +34,8 @@ Route::get('/', function () {
 
 });
 
+
+
 // login
 
 Route::get('login', [LoginController::class, 'index'])->name('login')->prefix('admin');

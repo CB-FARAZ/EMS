@@ -5,7 +5,6 @@ namespace App\Http\Controllers\employee;
 use App\Http\Controllers\Controller;
 use App\Models\Attendence;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class AttendenceController extends Controller
 {

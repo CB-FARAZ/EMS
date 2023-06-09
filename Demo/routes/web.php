@@ -34,61 +34,67 @@ Route::get('/', function () {
 
 });
 
+// login
+
+Route::get('login', [LoginController::class, 'index'])->name('login')->prefix('admin');
+
+// Login authentication route
+
+Route::post('/login/process', [LoginController::class, 'authenticateLoginRequest'])->name('login.process')->prefix('admin');
+
 //Admin Routes
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
-    // login
-
-    Route::get('login', [LoginController::class, 'index'])->name('login');
-
-    // Login authentication route
-
-    Route::post('/login/process', [LoginController::class, 'authenticateLoginRequest'])->name('login.process');
 
     //Dashboard Route
 
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //logout
 
     Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
 
+    //Employee Login
+
+    Route::get('/admin/login-as-user/{userId}', [AdminController::class, 'loginAsUser'])->name('admin.loginAsUser');
+
+
     // Add Users
 
-    Route::get('create', [CreateController::class, 'index'])->name('create')->middleware('admin');
+    Route::get('create', [CreateController::class, 'index'])->name('create');
 
     // Delete Employee
 
-    Route::delete('delete', [UserController::class, 'destroy'])->name('del')->middleware('admin');
+    Route::delete('delete', [UserController::class, 'destroy'])->name('del');
 
     // Display edit form for employee
 
-    Route::get('edit/{id}', [EditController::class, 'index'])->name('edit')->middleware('admin');
+    Route::get('edit/{id}', [EditController::class, 'index'])->name('edit');
 
     // Process employee update
 
-    Route::match(['put', 'post'], 'edit/{id}', [EditController::class, 'update'])->name('edit.process')->middleware('admin');
+    Route::match(['put', 'post'], 'edit/{id}', [EditController::class, 'update'])->name('edit.process');
 
     // Authentication process
 
-    Route::post('create/user', [CreateController::class, 'Request'])->name('create.process')->middleware('admin');
+    Route::post('create/user', [CreateController::class, 'Request'])->name('create.process');
 
     // Admin Setting
 
-    Route::get('settings', [AdminController::class, 'accountInfo'])->name('profile')->middleware('admin');
+    Route::get('settings', [AdminController::class, 'accountInfo'])->name('profile');
 
-    Route::post('update', [AdminController::class, 'accountInfoStore'])->name('update')->middleware('admin');
+    Route::post('update', [AdminController::class, 'accountInfoStore'])->name('update');
 
     // All employee
 
-    Route::get('employee', [UserController::class, 'index'])->name('employee')->middleware('admin');
+    Route::get('employee', [UserController::class, 'index'])->name('employee');
 
     // Reports
 
-    Route::get('reports', [ReportController::class, 'index'])->name('reports')->middleware('admin');
+    Route::get('reports', [ReportController::class, 'index'])->name('reports');
 
-    Route::get('reports/update', [ReportController::class, 'search'])->name('report.search')->middleware('admin');
+    Route::get('reports/update', [ReportController::class, 'search'])->name('report.search');
 
 
 });
@@ -96,39 +102,39 @@ Route::group(['prefix' => 'admin'], function () {
 
 //Employee Route
 
-Route::group(['prefix' => 'employee'], function () {
+Route::group(['prefix' => 'employee', 'middleware' => 'user'], function () {
 
     //Employee Dashboard
 
-    Route::get('dashboard', [App\Http\Controllers\employee\DashboardController::class, 'index'])->name('emp/dashboard')->middleware('user');
+    Route::get('dashboard', [App\Http\Controllers\employee\DashboardController::class, 'index'])->name('emp/dashboard');
 
     //Employee Attendence
 
-    Route::get('attendence', [AttendenceController::class, 'index'])->name('attendence')->middleware('user');
+    Route::get('attendence', [AttendenceController::class, 'index'])->name('attendence');
 
     //Start Timer
 
-    Route::post('timer/start', [AttendenceController::class, 'startTime'])->name('timer.start')->middleware('user');
+    Route::post('timer/start', [AttendenceController::class, 'startTime'])->name('timer.start');
 
     //Stop Timer
 
-    Route::post('timer/stop', [AttendenceController::class, 'stopTime'])->name('timer.stop')->middleware('user');
+    Route::post('timer/stop', [AttendenceController::class, 'stopTime'])->name('timer.stop');
 
     //Employee Profile
 
-    Route::get('settings', [SettingController::class, 'employee'])->name('emp/profile')->middleware('user');
+    Route::get('settings', [SettingController::class, 'employee'])->name('emp/profile');
 
     //Employee Update
 
-    Route::post('update', [SettingController::class, 'employeeupdate'])->name('update')->middleware('user');
+    Route::post('update', [SettingController::class, 'employeeupdate'])->name('update');
 
     //Employee's Attendences
 
-    Route::get('all', [AttendenceController::class, 'index'])->name('all')->middleware('user');
+    Route::get('all', [AttendenceController::class, 'index'])->name('all');
 
     //Search
 
-    Route::get('search', [SearchController::class, 'search'])->name('emp.search')->middleware('user');
+    Route::get('search', [SearchController::class, 'search'])->name('emp.search');
 
 
 });

@@ -3,20 +3,25 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
+use Auth;
 use Closure;
+use Redirect;
 
 class EmployeeMiddleware
 {
     public function handle($request, Closure $next)
     {
-        // Check if the user is authenticated and is an admin
-        if (auth()->check() && User::where('type' , 'user')) {
+        // Check if the user is authenticated and is an user
+        if (Auth::check() && User::where('type', 'user')) {
 
             return $next($request);
 
         }
 
         // Redirect the user to the appropriate page or display an error message
-        return redirect()->route('login')->with('error', 'Unauthorized access.');
+        return redirect()->route('login');
+
+
     }
+
 }

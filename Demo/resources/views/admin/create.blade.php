@@ -27,16 +27,14 @@
                     @if (Session::has('message'))
                         <div
                             class="{{ Session::get('alert-class', 'bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative duration-100') }}"
-                            >
+                        >
                             <span class="block sm:inline">{{ Session::get('message') }}</span>
                         </div>
                     @endif
-                        <br>
+                    <br>
                     <h1 class="text-3xl ">
                         CREATE EMPLOYEES
                     </h1>
-
-
 
 
                     <form class="my-8 text-sm" action="{{ route('create.process') }}" method="POST">
@@ -171,16 +169,6 @@
                             </button>
                         </div>
 
-
-                        {{--                        @if ($errors->any())--}}
-
-                        {{--                            @foreach ($errors->all() as $error)--}}
-
-                        {{--                                <div class="mt-4 text-sm text-red-500">{{$error}}</div>--}}
-
-                        {{--                            @endforeach--}}
-
-                        {{--                        @endif--}}
                     </form>
                 </div>
                 <div class="flex items-center justify-center">
@@ -246,21 +234,31 @@
 
     </main>
     <footer
-        class="w-96 mx-auto mt-36 ">
+
+        class="w-96 mx-auto mt-36 "
+                                           >
 
         <p class=" text-gray-400">
-            &copy; 2023 <a href="#" class="hover:underline" target="_blank">CruiseBrains</a>. All rights
+            &copy; 2023 <a href="#"
+                   class="hover:underline"
+                   target="_blank">
+                   CruiseBrains
+                   </a>. All rights
             reserved.
         </p>
 
+
     </footer>
+
 </div>
+
 
 </body>
 
 
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+
 </html>
 
 

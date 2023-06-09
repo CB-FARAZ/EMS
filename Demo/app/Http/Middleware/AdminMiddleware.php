@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
+use Auth;
 use Closure;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminMiddleware
 {
@@ -13,14 +15,14 @@ class AdminMiddleware
 
         // Check if the user is authenticated and is an admin
 
-        if (auth()->check() && User::where('type' , 'admin')) {
+        if (Auth::check() && User::where('type' , 'admin')) {
 
             return $next($request);
         }
 
         // Redirect the user to the appropriate page or display an error message
 
-        return redirect()->route('login')->with('error', 'Unauthorized access.');
+        return redirect()->route('login');
 
     }
 }

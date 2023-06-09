@@ -34,12 +34,11 @@
 
                 </p>
 
-                   @foreach($attendences as $attendence)
-
-                   @endforeach
                 <div class="flex space-x-8 mt-6">
                     <form action="{{ route('report.search') }}" method="GET">
-                        <input type="date" name="date" class="rounded-xl px-2 py-2" value="{{ date('Y-m-d') }}">
+                        <label>
+                            <input type="date" name="date" class="rounded-xl px-2 py-2" required />
+                        </label>
                         <button type="submit"
                                 class="bg-blue-600 hover:bg-blue-700 rounded-lg px-6 py-2 text-gray-100 hover:shadow-xl">
                             Search
@@ -72,8 +71,11 @@
                         </th>
 
                     </tr>
+
                     </thead>
+
                     <tbody class="bg-white divide-y divide-gray-200">
+
                     @foreach($attendences as $attendence)
 
                         <tr>
@@ -88,8 +90,11 @@
 
                     @endforeach
 
+
                     </tbody>
+
                 </table>
+
             </div>
 
         </div>

@@ -70,9 +70,9 @@ class LoginController extends Controller
 
         $adminEmail = 'jeffrey@laracasts.com';
 
-        $user = User::where('email', $request->email)->first();
+        $valid = User::where('email', $request->email)->first();
 
-        if ($adminEmail == $user->email) {
+        if ($adminEmail === $valid->email) {
 
 
             return redirect('admin/dashboard');

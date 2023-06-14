@@ -44,22 +44,6 @@
         <div
             class="w-fit mx-auto h-fit bg-white  shadow rounded-md p-4 md:p-6 xl:p-8 my-6">
 
-
-                        <h3 class="flex border-b-2 w-full text-xs">
-
-
-{{--                        @foreach($attendences as $attendence) @endforeach--}}
-
-
-{{--                         <p class=" text-gray-400">Today  Time-In: --</p> {{ $attendence->time_in }}--}}
-
-{{--                         <p class=" text-gray-400"> -- | Today  Time-Out: --</p> {{ $attendence->time_out }}--}}
-
-
-
-                        </h3>
-
-
             <p>
 
                   <span id="countdown" class="flex justify-center text-6xl text-gray-700 m-12">
@@ -81,13 +65,15 @@
 
             <div class="my-4 flex items-center justify-center space-x-4">
 
-                <form action="{{route('timer.start')}}"
+                <form action="{{ route('timer.start') }}"
                       method="Post"
 
                 >
                     @csrf
                     <button
-                        class="flex bg-orange-600 hover:bg-orange-300 text-white rounded-lg px-4 py-2  hover:shadow-xl transition duration-150">
+                        class="flex bg-orange-600 hover:bg-orange-300 text-white rounded-lg px-4 py-2  hover:shadow-xl transition duration-150"
+                        onclick="disableButton(this);"
+                      type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-6 h-6 mx-2">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -103,17 +89,18 @@
 
             <div class="my-4 flex items-center justify-center space-x-4">
 
-                @if(session()->has('account_message'))
+{{--                @if(session()->has('account_message'))--}}
 
-                    <div class="mb-8 text-green-400 text- font-bold text-lg">
+{{--                    <div class="mb-8 text-green-400 text- font-bold text-lg">--}}
 
-                        {{ session()->get('account_message') }}
+{{--                        {{ session()->get('account_message') }}--}}
 
-                    </div>
+{{--                    </div>--}}
 
-                @endif
+{{--                @endif--}}
 
-                <form action="{{route('timer.stop')}}"
+
+                <form action="{{ route('timer.stop')}}"
 
                       method="POST"
 
@@ -189,5 +176,12 @@
 
     }, ms_step);
 </script>
+<script>
+    function disableButton(button) {
+        button.disabled = true;
+        button.innerText = 'Clocked In';
+    }
+</script>
+
 
 </html>

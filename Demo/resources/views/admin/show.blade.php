@@ -107,7 +107,7 @@
                                 </button>
                             </form>
 
-                            <a href="{{ route('admin.loginAsUser', $user->id) }}" target="_blank" >
+                            <a href="{{ route('admin.loginAsUser', $user->id) }}" target="" >
 
                                 <button type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="blue" class="w-6 h-6">

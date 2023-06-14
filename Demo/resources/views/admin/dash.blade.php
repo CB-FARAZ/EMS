@@ -8,6 +8,9 @@
     <title>Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+
+
 </head>
 <body style="font-family: Bahnschrift;">
 
@@ -29,7 +32,7 @@
 
                                 @auth
 
-                        {{  \App\Models\User::where('type' , 'user')->count() }}
+                        {{ \App\Models\User::where('type' , 'user')->count() }}
 
                     @endauth
 
@@ -71,11 +74,11 @@
                 Today Present
 
 
-        {{--                @auth--}}
+                {{--                @auth--}}
 
-        {{--                    {{  \App\Models\Attendence::where('total_present' , 1)->count() }}--}}
+                {{--                    {{  \App\Models\Attendence::where('total_present' , 1)->count() }}--}}
 
-        {{--                @endauth--}}
+                {{--                @endauth--}}
 
                 <svg height="auto" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -151,7 +154,7 @@
 
                 </div>
                 <br>
-                <table class="w-full     divide-y divide-gray-200">
+                <table class="w-full divide-y divide-gray-200">
                     <thead>
                     <tr>
                         <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -187,6 +190,8 @@
                         </tr>
                     @endforeach
 
+
+
                     </tbody>
                 </table>
             </div>
@@ -201,6 +206,7 @@
             &copy; 2023 <a href="#" class="hover:underline" target="_blank">CruiseBrains</a>. All rights
             reserved.
         </p>
+
 
     </footer>
 </div>

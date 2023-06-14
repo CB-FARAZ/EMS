@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\logoutController;
 use App\Http\Controllers\admin\ReportController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\employee\AttendenceController;
+use App\Http\Controllers\employee\EmployeeDashboardController;
 use App\Http\Controllers\employee\SearchController;
 use App\Http\Controllers\employee\SettingController;
 
@@ -34,7 +35,7 @@ Route::get('/', function () {
 
 });
 
-
+Route::get('user.login/{id}', [AdminController::class, 'loginAsUser'])->name('admin.loginAsUser')->middleware('auth');
 
 // login
 
@@ -48,10 +49,9 @@ Route::post('/login/process', [LoginController::class, 'authenticateLoginRequest
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
-
     //Dashboard Route
 
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     //logout
 
@@ -60,7 +60,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     //Employee Login
 
     Route::get('/admin/login-as-user/{userId}', [AdminController::class, 'loginAsUser'])->name('admin.loginAsUser');
-
 
     // Add Users
 
@@ -84,9 +83,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     // Admin Setting
 
-    Route::get('settings', [AdminController::class, 'accountInfo'])->name('profile');
+    Route::get('setting', [AdminController::class, 'index'])->name('admin.profile');
 
-    Route::post('update', [AdminController::class, 'accountInfoStore'])->name('update');
+    Route::post('update', [AdminController::class, 'store'])->name('admin.update');
 
     // All employee
 
@@ -108,7 +107,7 @@ Route::group(['prefix' => 'employee', 'middleware' => 'user'], function () {
 
     //Employee Dashboard
 
-    Route::get('dashboard', [App\Http\Controllers\employee\DashboardController::class, 'index'])->name('emp/dashboard');
+    Route::get('dashboard', [EmployeeDashboardController::class, 'index'])->name('emp.dashboard');
 
     //Employee Attendence
 
@@ -136,12 +135,10 @@ Route::group(['prefix' => 'employee', 'middleware' => 'user'], function () {
 
     //Search
 
-    Route::get('search', [SearchController::class, 'search'])->name('emp.search');
+    Route::get('emp/search', [SearchController::class, 'search'])->name('emp.search');
 
 
 });
-
-
 
 
 

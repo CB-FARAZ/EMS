@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attendence;
 use http\Client\Request;
 
-class DashboardController extends Controller
+class EmployeeDashboardController extends Controller
 {
     public function index()
     {

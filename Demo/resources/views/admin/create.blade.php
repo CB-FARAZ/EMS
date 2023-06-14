@@ -92,8 +92,8 @@
                                     class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900 bg-white">
 
                                 <option selected disabled>Select</option>
-                                <option>Admin</option>
-                                <option>User</option>
+                                <option>admin</option>
+                                <option>user</option>
 
                             </select>
 

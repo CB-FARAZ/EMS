@@ -16,7 +16,7 @@ class Attendence extends Model
         'time_in',
         'time_out',
         'duration',
-        'total_present'
+
     ];
 
     protected $dates = [

@@ -47,7 +47,8 @@ class LoginController extends Controller
         if (!$user || !Hash::check($attributes['password'], $user->password)) {
 
             return redirect()->back()
-                ->withErrors('These credentials do not match our records.')
+                ->withErrors(['hidden' => 'These credentials do not match our records.',
+                    'error' => 'Please login to continue.'])
                 ->withInput(
                     $request->except('password')
 
@@ -68,74 +69,15 @@ class LoginController extends Controller
 
         auth()->login($user);
 
-        $adminEmail = 'jeffrey@laracasts.com';
 
-        $valid = User::where('email', $request->email)->first();
+        $type = User::where('email', $request->email)->first();
 
-        if ($adminEmail === $valid->email) {
+        return ($type && $type->isAdmin()) ? redirect('admin/dashboard') : redirect('employee/dashboard');
 
-
-            return redirect('admin/dashboard');
-
-        } else {
-
-
-            return redirect('employee/dashboard');
-
-        }
 
 
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// the user is found, let's set a success message.
-// Read: https://laravel.com/docs/10.x/session#flash-data
-
-// now redirect to home page??
-
-
-
 

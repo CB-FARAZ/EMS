@@ -52,6 +52,7 @@ class EditController extends Controller
 
          $user->save();
 
+
         Session::flash('message', 'Successfully updated the User!');
 
         return redirect()->route('employee', ['id' => $id]);

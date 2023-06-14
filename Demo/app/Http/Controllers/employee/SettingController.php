@@ -23,7 +23,8 @@ class SettingController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+
         ]);
 
         $user = Auth::user();

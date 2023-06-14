@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
-    public function accountInfo()
+    public function index()
     {
         $user = Auth::user();
 
         return view('admin.setting', compact('user'));
     }
 
-    public function accountInfoStore(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
 
@@ -39,24 +39,34 @@ class AdminController extends Controller
 
         $user->save();
 
-        Session::flash('message', 'Profile Updated');
+        Session::flash('message', 'Successfully Updated the User Profile.');
+        Session::flash('alert-class', 'bg-green-100 border border-green-400 px-4 py-3 rounded relative duration-100');
 
-        return redirect()->route('profile');
+        return redirect()->route('admin.profile');
     }
 
-    public function loginAsUser($user_id)
+    public function loginAsUser($id)
     {
-        $user = User::find($user_id);
+        $user = User::findOrFail($id);
 
         if ($user) {
 
-            Auth::login($user);
-            return redirect()->route('emp/dashboard');
+            // Check admin status
+            $status = Auth::user()->status;
 
+            Auth::user()->update(['status' => 'Inactive']);
+
+            Auth::loginUsingId($user->id);
+
+            $user->update(['status' => 'active']);
+
+
+            return redirect()->route('emp.dashboard');
         }
 
         return back()->withErrors(['error' => 'User not found']);
     }
+
 }
 
 

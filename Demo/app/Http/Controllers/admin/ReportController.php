@@ -4,7 +4,6 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendence;
-use http\Client\Request;
 
 
 class ReportController extends Controller
@@ -21,9 +20,21 @@ class ReportController extends Controller
     {
 
 
-         $attendences =  Attendence::where('date', $request->date)->get();
+        $date = $request->date;
 
-         return view('admin/Report')->with('attendences' , $attendences);
+        if (empty($date)) {
+            return redirect()->back()->with('error', 'Search string is empty');
+        }
+
+        $attendences = Attendence::where('date', $date)->get();
+
+        if ($attendences->isEmpty()) {
+
+            return redirect()->back()->with('error', 'No attendance found for the given date');
+
+        }
+
+        return view('admin/Report')->with('attendences', $attendences);
     }
 
 }

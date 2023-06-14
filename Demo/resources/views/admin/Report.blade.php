@@ -37,12 +37,24 @@
                 <div class="flex space-x-8 mt-6">
                     <form action="{{ route('report.search') }}" method="GET">
                         <label>
-                            <input type="date" name="date" class="rounded-xl px-2 py-2" required />
-                        </label>
+                            <input type="date" name="date" class="rounded-xl px-2 py-2"
+
+                                    value="{{ request('date') }}">
+
+
                         <button type="submit"
                                 class="bg-blue-600 hover:bg-blue-700 rounded-lg px-6 py-2 text-gray-100 hover:shadow-xl">
-                            Search
+                                Search
                         </button>
+                            <br>
+                            <br>
+
+                            @if(session('error'))
+                                <div class="text-red-400 m-2">
+                                    {{ session('error') }}
+                                </div>
+                        @endif
+
                     </form>
                 </div>
 

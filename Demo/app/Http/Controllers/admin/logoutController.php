@@ -16,16 +16,16 @@ class logoutController extends Controller
 
     protected function logout(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        $userid = auth()->user()->email;
-        User::where('email', $userid)->update([
+        $user = auth()->user()->email;
+        User::where('email', $user)->update([
 
             'status' => 'Inactive'
 
         ]);
 
 
-        $userid = auth()->user()->email;
-        User::where('email', $userid)->update([
+        $user = auth()->user()->email;
+        User::where('email', $user)->update([
 
             'last_login_at' => Carbon::now()
 

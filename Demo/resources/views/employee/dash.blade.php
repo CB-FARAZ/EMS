@@ -20,6 +20,7 @@
     <main class="ml-6">
 
 
+
         <div class=" flex mt-6 mb-12 gap-4 ml-20 ">
             <div
                 class="bg-gradient-to-r from-cyan-300 to-blue-500 w-96 h-36 border-r-2 rounded-lg ml-2 px-4 py-4 text-xl">
@@ -27,14 +28,14 @@
 
 
 
-                                @auth
+                            @auth
 
                         {{  \App\Models\User::where('type' , 'user')->count() }}
 
-                               @endauth
+                    @endauth
 
 
-                           </span>
+                       </span>
 
                 <svg height="auto" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -146,23 +147,40 @@
                 </div>
                 <br>
 
-                <div class="flex space-x-8 mt-4 mx-12">
+                <div class="flex space-x-36 mt-4 mx-12">
                     <form
                         action="{{ route('emp.search') }}"
-                        method="GET">
+                        method="GET"
+                    >
 
-                        <input
-                            type="date"
-                            name="date"
-                            class="rounded-xl px-2 py-2"
-                            required/>
+                        <label>
+                            <input
+
+                                type="date"
+                                name="date"
+                                class="rounded-xl px-2 py-2 w-36"
+                                value="{{ request('date') }}"/>
+                        </label>
 
                         <button
+
                             type="submit"
                             class="bg-green-600 hover:bg-green-400 rounded-lg px-6 py-2 text-gray-100 hover:shadow-xl">
                             Search
 
                         </button>
+
+                        <br>
+                        <br>
+                        @if(session('error'))
+
+                            <div class="text-red-400" role="alert">
+
+                                {{ session('error') }}
+
+                            </div>
+
+                        @endif
 
 
                     </form>
@@ -216,7 +234,8 @@
         class="w-96 mx-auto mt-36 ">
 
         <p class=" text-gray-400">
-            &copy; 2023 <a href="#" class="hover:underline" target="_blank">CruiseBrains</a>. All rights
+            &copy; 2023 <a href="http://www.cruisebrains.com" class="hover:underline" target="_blank">CruiseBrains</a>.
+            All rights
             reserved.
         </p>
 

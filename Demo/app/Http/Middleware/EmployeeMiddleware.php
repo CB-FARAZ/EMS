@@ -12,7 +12,8 @@ class EmployeeMiddleware
     public function handle($request, Closure $next)
     {
         // Check if the user is authenticated and is an user
-        if (Auth::check() && Auth::user()->isUser()) {
+        if (Auth::check() && User::where('type' , 'user')) {
+
 
             return $next($request);
         }

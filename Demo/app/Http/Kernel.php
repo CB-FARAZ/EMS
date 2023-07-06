@@ -77,7 +77,6 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
-
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'auth.session' => AuthenticateSession::class,
         'cache.headers' => SetCacheHeaders::class,
@@ -95,6 +94,8 @@ class Kernel extends HttpKernel
         'user' => EmployeeMiddleware::class,
 
         'auth' => Authenticate::class,
+
+
     ];
 
 

@@ -24,6 +24,8 @@ class logoutController extends Controller
         ]);
 
 
+
+
         $user = auth()->user()->email;
         User::where('email', $user)->update([
 

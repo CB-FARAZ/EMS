@@ -172,7 +172,7 @@
 
                         <br>
                         <br>
-                        @if(session('error'))
+                        @if( session('error'))
 
                             <div class="text-red-400" role="alert">
 

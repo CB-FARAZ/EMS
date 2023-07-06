@@ -16,6 +16,7 @@
 <div class="mr-12">
     <nav class="mt-12 ml-12">
 
+
         @auth
 
             <div class="text-xl text-end mr-4">
@@ -32,7 +33,7 @@
     </nav>
     <div class="flex overflow-hidden  pt-6">
         <aside id="sidebar"
-               class="space-y-4 fixed hidden z-20 h-full  left-0 top-4 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+               class="space-y-4 fixed hidden z-20 h-full left-0 top-4 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
                aria-label="Sidebar">
 
             <h1 class="text-center text-3xl text-gray-900 ">

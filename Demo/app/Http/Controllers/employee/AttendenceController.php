@@ -27,12 +27,13 @@ class AttendenceController extends Controller
 
         // Check if the user has already clocked in and has not clocked out yet
         if ($attendance && !$attendance->time_out) {
+
             return redirect('employee/attendence')->with('message', 'You have already clocked in.');
+
         }
 
         Attendence::create([
             'user_id' => $user->id,
-            'date' => $date,
             'time_in' => Carbon::now()
         ]);
 

@@ -51,15 +51,18 @@ class AdminController extends Controller
 
         if ($user) {
 
-            // Check admin status
-            $status = Auth::user()->status;
-
-            Auth::user()->update(['status' => 'Inactive']);
-
-            Auth::loginUsingId($user->id);
-
-            $user->update(['status' => 'active']);
-
+            //check adminstatus
+            Auth::user()->status;
+            // then change adminstatus to Inactive
+            Auth::user()->status = 'Inactive';
+            //save status
+            Auth::user()->save();
+            // then login to that user
+            Auth::login($user);;
+            //update the user status to active
+            $user->status = 'active';
+            // and save the status in db
+            $user->save();
 
             return redirect()->route('emp.dashboard');
         }

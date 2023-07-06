@@ -25,7 +25,7 @@
                 <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 py-8 rounded-lg">
 
                     <h1 class="text-3xl">
-                        EDIT EMPLOYEES
+                        EDIT C,lient
                     </h1>
 
                     <form class="my-8 text-sm" action="{{ route('edit.process', ['id' => $user->id]) }}" method="POST">

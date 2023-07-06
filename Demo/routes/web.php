@@ -35,6 +35,11 @@ Route::get('/', function () {
 
 });
 
+//logout
+
+Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
+
+
 Route::get('user.login/{id}', [AdminController::class, 'loginAsUser'])->name('admin.loginAsUser')->middleware('auth');
 
 // login
@@ -53,9 +58,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    //logout
-
-    Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
 
     //Employee Login
 

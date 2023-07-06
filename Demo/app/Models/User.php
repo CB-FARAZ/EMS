@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function isUser()
     {
-        return $this->type == 'user';
+        return $this->type == 'User';
     }
 
 
